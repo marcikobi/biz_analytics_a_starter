@@ -25,3 +25,14 @@ st.write(scipy_model(desired_year))
 
 "Autor Finn Böckenhoff"
 
+st.subheader("Informationen zum Modell und seinen Daten")
+"Das Modell ist ein lineares Regressionsmodell auf Grundlage von Daten der Jahre 2010 bis 2020."
+"Es steht ein Datenpunkt pro Jahr zur Verfügung."
+
+"Die Daten stammen aus den folgenden Quellen:"
+
+
+
+
+
+

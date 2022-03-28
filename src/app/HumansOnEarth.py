@@ -35,7 +35,7 @@ else:
 "Autor Finn Böckenhoff"
 
 st.subheader("Informationen zum Modell und seinen Daten")
-"Die Daten zwischen 1951 und 2020 sind historische Werte von der folgenden Quelle:"
+"Die Daten zwischen 1951 und 2020 sind historische Werte der folgenden Quelle:"
 "United Nations. (2020). World Population Prospects 2019. https://population.un.org/wpp/"
 "Die Daten ab 2021 werden durch ein lineares Regressionsmodell auf Grundlage der vorherigen Daten berechnet."
 "Es steht ein Datenpunkt pro Jahr zur Verfügung."

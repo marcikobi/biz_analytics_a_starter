@@ -1,6 +1,9 @@
 import streamlit as st
 
 st.title("Number of Humans on Earth")
+st.text(" ")
+st.text("Move the slider to discover the number of humans in a given year.")
+st.text(" ")
 
 years = [2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000, 1999, 1998, 1997, 1996, 1995, 1994, 1993, 1992, 1991, 1990, 1989, 1988, 1987, 1986, 1985, 1984, 1983, 1982, 1981, 1980, 1979, 1978, 1977, 1976, 1975, 1974, 1973, 1972, 1971, 1970, 1969, 1968, 1967, 1966, 1965, 1964, 1963, 1962, 1961, 1960, 1959, 1958, 1957, 1956, 1955, 1954, 1953, 1952, 1951
          ]
@@ -19,23 +22,19 @@ def scipy_model(desired_year):
     return model_result
 
 desired_year = st.slider(label="Select a year", min_value=1951, max_value=2150, value=2022, step=1, format=None, disabled=False)
+def thousand_sep(num):
+    return ("{:,}".format(num))
 
+st.text(" ")
 if(desired_year > 2020):
-    "The estimation for the year"
-    st.write(desired_year)
-    "is:"
-    st.write(round(scipy_model(desired_year)))
+    st.write("The _**projected**_ global population in the year",str(desired_year),"will be",thousand_sep(round(scipy_model(desired_year))),".")
 else:
-    "The population in the year"
-    st.write(desired_year)
-    "was:"
-    st.write(population[years.index(desired_year)])
+    st.write("The _**actual**_ global population in the year",str(desired_year),"was",thousand_sep(population[years.index(desired_year)]),".")
 
 
-"Autor Finn Böckenhoff"
-
-st.subheader("Informationen zum Modell und seinen Daten")
-"Die Daten zwischen 1951 und 2020 sind historische Werte der folgenden Quelle:"
-"United Nations. (2020). World Population Prospects 2019. https://population.un.org/wpp/"
-"Die Daten ab 2021 werden durch ein lineares Regressionsmodell auf Grundlage der vorherigen Daten berechnet."
-"Es steht ein Datenpunkt pro Jahr zur Verfügung."
+st.text(" ")
+if st.button("Information on the model and its data", help="Click here for further information"):
+    "The population numbers between 1951 and 2020 are historical values from the following source: "
+    "United Nations. (2020). World Population Prospects 2019. https://population.un.org/wpp/"
+    "Starting from 2021, the estimations are calculated based on a linear regression model based on the previous years."
+    "Author Finn Böckenhoff"

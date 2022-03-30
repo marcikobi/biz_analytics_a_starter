@@ -4,7 +4,7 @@ from scipy.stats import linregress
 st.title("Number of Humans on Earth")
 st.text(" ")
 st.text("Move the slider to discover the number of humans in a given year.")
-st.text(" ")
+
 
 years = [2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003,
          2002, 2001, 2000, 1999, 1998, 1997, 1996, 1995, 1994, 1993, 1992, 1991, 1990, 1989, 1988, 1987, 1986, 1985,
@@ -34,6 +34,10 @@ def scipy_model(desired_year):
     return model_result
 
 
+model_result = scipy_model(desired_year)
+selected_population = model_result if desired_year > 2020 else population[years.index(desired_year)]
+
+
 def thousand_sep(num):
     return "{:,}".format(num)
 
@@ -41,10 +45,18 @@ def thousand_sep(num):
 st.text(" ")
 if desired_year > 2020:
     st.write("The _**projected**_ global population in the year", str(desired_year), "will be",
-             thousand_sep(round(scipy_model(desired_year))), ".")
+             thousand_sep(round(selected_population)), ".")
 else:
     st.write("The _**actual**_ global population in the year", str(desired_year), "was",
-             thousand_sep(population[years.index(desired_year)]), ".")
+             thousand_sep(selected_population), ".")
+st.text(" ")
+st.text(" ")
+
+st.text("Select your year of birth to find out how global population has increased.")
+birth_year = st.number_input("Year of birth", min_value=1951, max_value=2020, value=1980, step=1)
+st.text(" ")
+st.write("When you were born, global population was at", thousand_sep(population[years.index(birth_year)]), ".")
+st.write("Since then, it has increased by", thousand_sep(round(scipy_model(2022) - population[years.index(birth_year)])), ".")
 
 st.text(" ")
 if st.button("Information on the model and its data", help="Click here for further information"):
